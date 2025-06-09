@@ -1,0 +1,8 @@
+.reserve-button .confirmBtn{
+    background-color: #ff0000;
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 3px;
+    box-shadow: 0 10px 15px 0 rgba(255, 83, 48, 0.35);
+    transition: all 0.3s;
+}
