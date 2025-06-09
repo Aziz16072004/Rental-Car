@@ -11,6 +11,8 @@ import { useToast } from '../components/ui/use-toast';
 import AuthLayout from '../components/AuthLayout';
 import { UserPlus, Mail, Lock, Briefcase, Phone, Home, MapPin, CalendarDays, Building } from 'lucide-react';
 import '../index.css';
+import { API_URL } from '../api';
+
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -65,7 +67,7 @@ const SignUpPage = () => {
   e.preventDefault();
   if (validateForm()) {
     try {
-      const res = await axios.post("http://localhost:5000/users/addUser", formData);
+      const res = await axios.post(`${API_URL}/users/addUser`, formData);
       if (res.data) {
          toast({
           title: "Account Created!",

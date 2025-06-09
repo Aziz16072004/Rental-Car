@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import BgShape from "../images/hero/hero-bg.png";
 import axios from 'axios'
+import { API_URL } from '../api';
 
 import { motion } from 'framer-motion';
 import { Button } from '../components/ui/button';
@@ -54,7 +55,7 @@ const LoginPage = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-    const res = await axios.post("http://localhost:5000/users/login", formData);
+    const res = await axios.post(`${API_URL}/users/login`, formData);
     const user = res.data;
     if (res.data) {
       

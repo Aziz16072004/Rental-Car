@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useToast } from "../components/ui/use-toast";
 import axios from "axios";
+import { API_URL } from '../api';
 
 function Models({cars ,user}) {
    const [modal, setModal] = useState(false); //  class - active-modal
@@ -80,7 +81,7 @@ function Models({cars ,user}) {
   const confirmBooking = async(e) => {
     e.preventDefault();
   try {
-    const res = await axios.post("http://localhost:5000/reservations/addReservation", {
+    const res = await axios.post(`${API_URL}/reservations/addReservation`, {
       customerID: user.CustomerID,
       vehicleID: carType,
       startDate: pickTime,

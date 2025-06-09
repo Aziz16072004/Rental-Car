@@ -8,6 +8,7 @@ import CarPassat from "../images/cars-big/passatcc.jpg";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useToast } from './ui/use-toast.js';
+import { API_URL } from '../api';
 
 function BookCar({cars}) {
   const [modal, setModal] = useState(false); //  class - active-modal
@@ -144,7 +145,7 @@ function BookCar({cars}) {
   const confirmBooking = async(e) => {
     e.preventDefault();
   try {
-    const res = await axios.post("http://localhost:5000/reservations/addReservation", {
+    const res = await axios.post(`${API_URL}/reservations/addReservation`, {
       customerID: user.CustomerID,
       vehicleID: carType,
       startDate: pickTime,

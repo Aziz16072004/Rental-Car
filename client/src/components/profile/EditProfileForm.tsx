@@ -4,6 +4,7 @@ import Button from '../ui/profileButton.tsx';
 import { Save } from 'lucide-react';
 import axios from 'axios';
 import { useToast } from '../../components/ui/use-toast';
+import { API_URL } from '../../api';
 
 interface EditProfileFormProps {
   user: User;
@@ -26,7 +27,7 @@ const EditProfileForm: React.FC<EditProfileFormProps> = ({ user, onSave, onCance
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`http://localhost:5000/users/updateUser/${formData.CustomerID}`,formData)
+      const res = await axios.put(`${API_URL}/users/updateUser/${formData.CustomerID}`,formData)
       if (res.data) {
         localStorage.setItem('CarRentalCurrentUser', JSON.stringify(res.data.updatedUser));
         console.log(res.data);

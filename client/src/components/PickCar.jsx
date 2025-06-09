@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import CarBox from "./CarBox";
 import axios from "axios";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { API_URL } from '../api';
 
 function PickCar({user}) {
   const [cars, setCars] = useState([]);
@@ -11,7 +12,9 @@ function PickCar({user}) {
   const itemsPerPage = 10;
 
   useEffect(() => {
-    axios.get("http://localhost:5000/cars/getCars")
+    console.log(API_URL);
+    
+    axios.get(`${API_URL}/cars/getCars`)
       .then((res) => {
         setCars(res.data);
         setColorBtn("btn0");

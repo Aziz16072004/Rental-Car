@@ -3,6 +3,7 @@ import About from "./Pages/About";
 import { useLocation } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { API_URL } from './api';
 
 
 import Home from "./Pages/Home";
@@ -34,7 +35,7 @@ function App() {
   
   
   useEffect(() => {
-    axios.get("http://localhost:5000/cars/getCars")
+    axios.get(`${API_URL}/cars/getCars`)
     .then((res) => {
       setCars(res.data);
       console.log(res.data);

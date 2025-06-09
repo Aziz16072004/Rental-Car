@@ -11,6 +11,8 @@
   import HeroPages from '../components/HeroPages';
   import { useLocation } from "react-router-dom";
   import { useNavigate } from 'react-router-dom';
+  import { API_URL } from '../api';
+
 import axios from 'axios';
 
 
@@ -97,7 +99,7 @@ import axios from 'axios';
       setUser(user);
       console.log(user);
       
-      axios.get(`http://localhost:5000/reservations/reservationsForUser?customerId=${user.CustomerID}`)
+      axios.get(`${API_URL}/reservations/reservationsForUser?customerId=${user.CustomerID}`)
     .then(response => {
       setRentals(response.data);  
       // console.log(response.data);
@@ -114,7 +116,7 @@ import axios from 'axios';
     
         const fetchLikedCars = async () => {
           try {
-            const res = await axios.get(`http://localhost:5000/cars/liked/${user.CustomerID}`);
+            const res = await axios.get(`${API_URL}/cars/liked/${user.CustomerID}`);
             setSavedVehicles(res.data);
             console.log(res.data);
             
@@ -145,7 +147,7 @@ import axios from 'axios';
         console.log({CustomerID: user.CustomerID,
         VehicleID: id});
         
-      const response = await axios.post('http://localhost:5000/cars/addLikedCar', {
+      const response = await axios.post(`${API_URL}/cars/addLikedCar`, {
         CustomerID: user.CustomerID,
         VehicleID: id,
       });

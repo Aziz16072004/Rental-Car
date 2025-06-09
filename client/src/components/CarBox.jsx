@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Heart } from 'lucide-react';
 import axios from "axios";
+import { API_URL } from '../api';
 
 function CarBox({ data, user }) {
   const [carLoad, setCarLoad] = useState(true);
@@ -10,7 +11,7 @@ function CarBox({ data, user }) {
 
   const checkLiked = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/cars/isCarLiked", {
+      const res = await axios.get(`${API_URL}/cars/isCarLiked`, {
         params: {
           CustomerID: user.CustomerID,
           VehicleID: data.VehicleID,
@@ -27,7 +28,7 @@ function CarBox({ data, user }) {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/cars/addLikedCar', {
+      const response = await axios.post(`${API_URL}/cars/addLikedCar`, {
         CustomerID: user.CustomerID,
         VehicleID: data.VehicleID,
       });

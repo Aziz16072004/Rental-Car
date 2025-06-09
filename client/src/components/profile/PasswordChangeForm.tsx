@@ -3,6 +3,7 @@ import Button from  '../ui/profileButton.tsx';
 import { KeyRound } from 'lucide-react';
 import axios from 'axios';
 import { useToast } from '../../components/ui/use-toast';
+import { API_URL } from '../../api';
 
 interface PasswordChangeFormProps {
   onSave: (passwords: {currentPassword: string; newPassword: string}) => void;
@@ -40,7 +41,7 @@ const PasswordChangeForm: React.FC<PasswordChangeFormProps> = ({user, onSave, on
       return;
     }
     try {
-      const res = await axios.put(`http://localhost:5000/users/updatePassword/${user.CustomerID}`, {currentPassword: passwords.currentPassword,newPassword:passwords.newPassword ,confirmNewPassword:passwords.confirmPassword});
+      const res = await axios.put(`${API_URL}/users/updatePassword/${user.CustomerID}`, {currentPassword: passwords.currentPassword,newPassword:passwords.newPassword ,confirmNewPassword:passwords.confirmPassword});
       console.log(res.data);
       
       if (res.data){
