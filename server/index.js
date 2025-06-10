@@ -8,7 +8,9 @@ const cors = require('cors');
 
 app.use(cors());
 app.use(express.json())
-
+app.get("/api/test",(req,res)=>{
+  res.json({msg:"server running "})
+})
 app.use('/api/users', userRoutes);
 app.use('/api/cars', carRoutes);
 app.use('/api/reservations', reservationsRoutes);
