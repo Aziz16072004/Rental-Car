@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card, { CardContent } from '../ui/profileCard.tsx';
 import { Heart, Car } from 'lucide-react';
 import Button from '../ui/profileButton.tsx';
 import { Link } from 'react-router-dom';
-
+import ReservationModalLikedVehicule from "../ReservationModalLikedVehicule.jsx"
 interface SavedVehicleProps {
   vehicles: {
     id: string;
@@ -16,7 +16,12 @@ interface SavedVehicleProps {
   onRemove: (id: string) => void;
 }
 
-const SavedVehicles: React.FC<SavedVehicleProps> = ({ vehicles, onRemove }) => {
+const SavedVehicles: React.FC<SavedVehicleProps> = ({ user,vehicles, onRemove }) => {
+  const [modal , setModal] = useState(false);
+  const [car , setCar] = useState(null);
+    const CloseModal = (e) => {
+      setModal(false)
+    };
   if (vehicles.length === 0) {
     return (
       <div className="text-center py-10">
@@ -38,21 +43,22 @@ const SavedVehicles: React.FC<SavedVehicleProps> = ({ vehicles, onRemove }) => {
   }
 
   return (
+    <>
+    <ReservationModalLikedVehicule user={user} car={car} modal={modal} CloseModal={CloseModal}/>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       
       {vehicles.map((vehicle) => (
         <Card key={vehicle.id} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-          {console.log(vehicle)}
           <div className="relative h-60 bg-gray-200">
             <img
               src={vehicle.ImageURL}
               alt={`${vehicle.Mark} ${vehicle.Model}`}
               className="w-full h-full object-cover"
-            />
+              />
             <button
               onClick={() => onRemove(vehicle.VehicleID)}
               className="absolute top-2 right-2 p-1.5 bg-white rounded-full shadow hover:bg-red-50 transition-colors duration-200"
-            >
+              >
               <Heart className="w-5 h-5 text-red-600 fill-red-600" />
             </button>
           </div>
@@ -68,12 +74,16 @@ const SavedVehicles: React.FC<SavedVehicleProps> = ({ vehicles, onRemove }) => {
               </div>
             </div>
             <div className="mt-4">
+              <button onClick={()=>{setCar(vehicle);setModal(true)}}>
+
               <Button fullWidth>Reserve Now</Button>
+              </button>
             </div>
           </CardContent>
         </Card>
       ))}
     </div>
+      </>
   );
 };
 

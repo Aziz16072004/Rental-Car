@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Rental } from '../../types/user';
 import Card, { CardContent } from  '../ui/profileCard.tsx';
 import { Calendar, MapPin, Clock, DollarSign, Car } from 'lucide-react';
-
+import EditReservation from '../EditReservation'
 interface RentalHistoryItemProps {
   rental: Rental;
 }
 
-const RentalHistoryItem: React.FC<RentalHistoryItemProps> = ({ rental }) => {
+const RentalHistoryItem: React.FC<RentalHistoryItemProps> = ({ rental,user }) => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'pending':
@@ -22,8 +22,13 @@ const RentalHistoryItem: React.FC<RentalHistoryItemProps> = ({ rental }) => {
         return 'bg-gray-100 text-gray-800';
     }
   };
-
+  const [modal , setModal] = useState(false);
+  const CloseModal = (e) => {
+    setModal(false)
+  };
   return (
+    <>
+    <EditReservation user={user} rental={rental} modal={modal} CloseModal={CloseModal}/>
     <Card className="hover:shadow-lg transition-shadow duration-300">
       <CardContent>
         <div className="flex flex-col md:flex-row justify-between">
@@ -63,7 +68,7 @@ const RentalHistoryItem: React.FC<RentalHistoryItemProps> = ({ rental }) => {
             </div>
           
             
-            <button className="mt-2 text-sm text-red-600 hover:underline flex py-1 items-center text-[1.4rem]">
+            <button className="mt-2 text-sm text-red-600 hover:underline flex py-1 items-center text-[1.4rem]" onClick={()=>{setModal(true)}}>
               <Clock className="w-3 h-3 mr-1" />
               View Details
             </button>
@@ -71,6 +76,7 @@ const RentalHistoryItem: React.FC<RentalHistoryItemProps> = ({ rental }) => {
         </div>
       </CardContent>
     </Card>
+    </>
   );
 };
 

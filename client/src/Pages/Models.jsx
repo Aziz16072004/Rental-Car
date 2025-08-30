@@ -9,7 +9,7 @@ import { API_URL } from '../api';
 function Models({cars ,user}) {
    const [modal, setModal] = useState(false); //  class - active-modal
     
-    const [carType, setCarType] = useState("");
+    // const [carType, setCarType] = useState("");
   const [pickUp, setPickUp] = useState("");
   const [dropOff, setDropOff] = useState("");
   const [pickTime, setPickTime] = useState("");
@@ -64,7 +64,6 @@ function Models({cars ,user}) {
     setZipCode(e.target.value);
   };
     const [address, setAddress] = useState();
-  // open modal when all inputs are fulfilled
   const CloseModal = (e) => {
     setModal(false)
   };
@@ -81,14 +80,22 @@ function Models({cars ,user}) {
   const confirmBooking = async(e) => {
     e.preventDefault();
   try {
+    console.log({customerID: user.CustomerID,
+      vehicleID: selectedCar.VehicleID,
+      startDate: pickTime,
+      endDate: dropTime,
+      pickupLocation: pickUp,
+      dropoffLocation: dropOff});
+    
     const res = await axios.post(`${API_URL}/reservations/addReservation`, {
       customerID: user.CustomerID,
-      vehicleID: carType,
+      vehicleID: selectedCar.VehicleID,
       startDate: pickTime,
       endDate: dropTime,
       pickupLocation: pickUp,
       dropoffLocation: dropOff
     });
+
     setModal(!modal);
     toast({
         title: "reservation added Successful!",
@@ -152,8 +159,8 @@ function Models({cars ,user}) {
                 <div>
                   <h6>Pick-Up Date & Time</h6>
                   <p>
-                    <input type="date" onChange={handlePick}/>
-                    <input type="time" onChange={handlePickTime} className="input-time" ></input>
+                    <input type="date" onChange={handlePickTime}/>
+                    {/* <input type="time" onChange={handlePickTime} className="input-time" ></input> */}
                   </p>
                 </div>
               </span>
@@ -165,8 +172,8 @@ function Models({cars ,user}) {
                 <div>
                   <h6>Drop-Off Date & Time</h6>
                   <p>
-                    <input type="date" onChange={handleDrop}/>
-                    <input type="time" onChange={handleDropTime} className="input-time"></input>
+                    <input type="date" onChange={handleDropTime}/>
+                    {/* <input type="time" onChange={handleDropTime} className="input-time"></input> */}
                   </p>
                 </div>
               </span>
@@ -192,7 +199,7 @@ function Models({cars ,user}) {
                 <i className="fa-solid fa-calendar-days"></i>
                 <div>
                   <h6>Drop-Off Location</h6>
-                  <select value={pickUp} onChange={handlePick}>
+                  <select value={pickUp} onChange={handleDrop}>
                     <option>Select pick up location</option>
                     <option value='Manouba'>Manouba</option>
                     <option value='ariena'>ariena</option>
@@ -203,7 +210,7 @@ function Models({cars ,user}) {
           </div>
           <div className="booking-modal__car-info__model">
             <h5>
-              <span>Car -</span> {carType}
+              <span>Car -</span> {selectedCar.Model}
             </h5>
             {console.log(selectedCar)}
            <img src={selectedCar.ImageURL} alt="car_img" />

@@ -174,7 +174,7 @@ import axios from 'axios';
               {rentals.length > 0 ? (
                 <div className="space-y-4">
                   {rentals.map(rental => (
-                    <RentalHistoryItem key={rental.id} rental={rental} />
+                    <RentalHistoryItem key={rental.id} user={user} rental={rental} />
                   ))}
                 </div>
               ) : (
@@ -189,7 +189,7 @@ import axios from 'axios';
           return (
             <div>
               <h2 className="text-3xl font-semibold mb-4">Your Saved Vehicles</h2>
-              <SavedVehicles vehicles={savedVehicles} onRemove={handleRemoveSavedVehicle} />
+              <SavedVehicles user={user}vehicles={savedVehicles} onRemove={handleRemoveSavedVehicle} />
             </div>
           );
           

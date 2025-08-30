@@ -504,7 +504,7 @@ function BookCar({cars}) {
             </div>
           </form>
         </div>
-         ):<div className="navbar__buttons d-flex justify-center mt-5"><Link className="navbar__buttons__sign-in" to="/login" state={{
+         ):<div className="navbar__buttons d-flex justify-center py-6"><Link className="navbar__buttons__sign-in" to="/login" state={{
     pickUp2: pickUp,
     dropOff2: dropOff,
     pickTime2: pickTime,

@@ -530,22 +530,22 @@ body {
 }
 
 .booking-modal {
-  opacity: 0;
-  display: none;
-  flex-direction: column;
-  position: fixed;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  z-index: 999999999999;
-  top: 54%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 83rem;
-  height: 100vh;
-  border: 2px solid white;
-  background-color: rgb(255, 255, 255);
-  padding-right: 2px;
-  color: #010103;
+    opacity: 0;
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 999999999999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 83rem;
+    height: 93vh;
+    border: 2px solid white;
+    background-color: rgb(255, 255, 255);
+    padding-right: 2px;
+    color: #010103;
 }
 @media (max-width: 800px) {
   .booking-modal {
@@ -1912,6 +1912,8 @@ footer {
   border: 2px solid #ff0000;
   font-size: 1.8rem;
   cursor: pointer;
+  color: white;
+    font-weight: 700;
 }
 .models-div__box__descr__name-price__btn:hover {
   box-shadow: 0 10px 15px 0 rgba(255, 83, 48, 0.6);

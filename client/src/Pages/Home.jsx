@@ -14,6 +14,7 @@ function Home({cars,user}) {
     
   return (
     <>
+      
       <Hero />
       <BookCar cars={cars}/>
       <PlanTrip />

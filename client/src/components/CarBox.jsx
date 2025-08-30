@@ -97,9 +97,9 @@ function CarBox({ data, user }) {
           </div>
         </div>
 
-        <a className="cta-btn" href="#booking-section">
+        <button className="cta-btn" onClick={()=>{}}>
           Reserve Now
-        </a>
+        </button>
       </div>
     </div>
   );
